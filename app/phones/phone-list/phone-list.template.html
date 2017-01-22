@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-2">
+            <!--Sidebar content-->
+
+            <p>
+                Search:
+                <input ng-model="$ctrl.query">
+            </p>
+
+            <p>
+                Sort by:
+                <select ng-model="$ctrl.orderProp">
+                    <option value="name">Alphabetical</option>
+                    <option value="age">Newest</option>
+                </select>
+            </p>
+
+            <p>
+                Restrict the number of phones:
+                <input ng-model="$ctrl.nbrPhones" type="number">
+            </p>
+
+        </div>
+
+        <div class="col-md-10">
+
+            <!--Body content-->
+
+            <ul class="phones">
+                <li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp"
+                    class="thumbnail container-fluid phone-list-item">
+                    <a href="#!/phones/{{phone.id}}" class="thumb col-md-2">
+                        <img ng-src="{{phone.imageUrl}}" alt="{{phone.name}}" width="100px"/>
+                    </a>
+                    <a href="#!/phones/{{phone.id}}">{{phone.name}}</a>
+                    <p>{{phone.snippet}}</p>
+                </li>
+            </ul>
+            <!--<pre>{{$ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp | json}}</pre>-->
+
+        </div>
+
+    </div>
+</div>
